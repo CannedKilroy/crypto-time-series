@@ -1,0 +1,55 @@
+---
+title: "Data Cleaning"
+author: "No Name"
+date: "March 1, 2024"
+output:
+  html_document:
+    toc: true
+    toc_depth: '3'
+    df_print: paged
+  html_notebook:
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+    toc_depth: 3
+---
+
+# Introduction
+This notebook cleans the data
+
+# Setup 
+**Load Packages**
+```{r}
+if (!requireNamespace("RMariaDB", quietly = TRUE)) {
+  install.packages("RMariaDB")
+}
+library(RMariaDB)
+```
+
+**Database Credentials**
+```{r}
+db_name <- "test_yaml"
+db_user <- "root"
+db_password <- "root"
+db_host <- "localhost"
+```
+
+**Create a connection object**
+```{r}
+conn <- dbConnect(RMariaDB::MariaDB(), dbname = db_name, username = db_user, password = db_password, host = db_host)
+```
+
+**Check Connection**
+```{r}
+if (!is.null(conn)) {
+  print("Connected successfully!")
+} else {
+  print("Connection failed.")
+}
+```
+
+**Close Connection**
+```{r}
+#dbDisconnect(conn)
+```
